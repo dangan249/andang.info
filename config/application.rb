@@ -26,5 +26,33 @@ module AndangInfo
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.autoload_paths << Rails.root.join('lib/tasks')
+    config.linkedin_email = ENV['LINKEDIN_EMAIL']
+    config.linkedin_password = ENV['LINKEDIN_PASSWORD']
   end
+end
+
+LinkedIn.configure do |config|
+  config.client_id = ENV['LINKEDIN_CLIENT_ID']
+  config.client_secret = ENV['LINKEDIN_CLIENT_SECRET']
+  # This must exactly match the redirect URI you set on your application's
+  # settings page. If your redirect_uri is dynamic, pass it into
+  # `auth_code_url` instead.
+  config.redirect_uri  = ENV['LINKEDIN_REDIRECT_URL']
+end
+
+require 'capybara/poltergeist'
+
+# driver_options = { js_errors: false,
+#                    logger: NilLogger.new,
+#                    phantomjs_logger: STDOUT,
+#                    phantomjs_options: ['--debug=true'],
+#                    debug: false  }
+
+Capybara.configure do |capybara|
+  capybara.run_server = true
+  # capybara.register_driver :poltergeist do |app|
+  #   Capybara::Poltergeist::Driver.new(app, driver_options)
+  # end
+  capybara.current_driver = :poltergeist
 end
