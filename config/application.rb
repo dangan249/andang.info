@@ -29,6 +29,7 @@ module AndangInfo
     config.autoload_paths << Rails.root.join('lib/tasks')
     config.linkedin_email = ENV['LINKEDIN_EMAIL']
     config.linkedin_password = ENV['LINKEDIN_PASSWORD']
+    config.linkedin_access_token = ENV['LINKEDIN_ACCESS_TOKEN']
   end
 end
 
