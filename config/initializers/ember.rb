@@ -1,3 +1,3 @@
 EmberCli.configure do |c|
-  c.app :frontend, silent: true
+  c.app :frontend
 end
